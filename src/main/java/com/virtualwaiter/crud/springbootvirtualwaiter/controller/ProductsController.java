@@ -49,6 +49,14 @@ public class ProductsController {
 			return "products/create";
 		}
 		
+		Product product = new Product();
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        
+        repo.save(product);
+        
+       
 		return "redirect:/products";		
 	}
 }
