@@ -1,0 +1,5 @@
+com\virtualwaiter\crud\springbootvirtualwaiter\SpringbootvirtualwaiterApplication.class
+com\virtualwaiter\crud\springbootvirtualwaiter\models\Product.class
+com\virtualwaiter\crud\springbootvirtualwaiter\controller\ProductsController.class
+com\virtualwaiter\crud\springbootvirtualwaiter\services\ProductsRepo.class
+com\virtualwaiter\crud\springbootvirtualwaiter\models\ProductDto.class

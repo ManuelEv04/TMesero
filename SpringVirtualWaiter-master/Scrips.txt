@@ -1,0 +1,106 @@
+create database bd_virtualwaiter;
+
+CREATE TABLE bd_virtualwaiter.`customers` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Names` varchar(100) NOT NULL,
+  `Surnames` varchar(100) NOT NULL,
+  `IdentificationDocument` varchar(50) NOT NULL,
+  `Phone` varchar(20) NOT NULL,
+  `Birthdate` varchar(10) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE bd_virtualwaiter.`eaterytable` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Number` int(11) NOT NULL,
+  `Capacity` varchar(5) NOT NULL,
+  `Status` bit(1) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE bd_virtualwaiter.`orders` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `CreationDate` varchar(10) NOT NULL,
+  `Observations` varchar(200) DEFAULT NULL,
+  `Price` float NOT NULL,
+  `Status` bit(1) NOT NULL,
+  `IdClient` int(11) NOT NULL,
+  `IdTable` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `fk_IdClient` (`IdClient`),
+  KEY `fk_IdTable` (`IdTable`),
+  CONSTRAINT `fk_IdClient` FOREIGN KEY (`IdClient`) REFERENCES `customers` (`Id`),
+  CONSTRAINT `fk_IdTable` FOREIGN KEY (`IdTable`) REFERENCES `eaterytable` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE bd_virtualwaiter.`products` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Description` varchar(200) NOT NULL,
+  `Price` float NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+select * from bd_virtualwaiter.eaterytable;
+select * from bd_virtualwaiter.customers;
+select * from bd_virtualwaiter.products;
+select * from bd_virtualwaiter.orders;
+
+INSERT INTO bd_virtualwaiter.Customers(Names, Surnames, IdentificationDocument, Phone, Birthdate, Email) 
+VALUES ("Estefania", "Perez", "1020456789", "311567092", '1990-06-01', "estefap@hotmail.com");
+
+INSERT INTO bd_virtualwaiter.Customers(Names, Surnames, IdentificationDocument, Phone, Birthdate, Email) 
+VALUES ("Juan", "Acevedo", "1037789420", "3126730098", '1989-12-14', "juanace@hotmail.com");
+
+INSERT INTO bd_virtualwaiter.Customers(Names, Surnames, IdentificationDocument, Phone, Birthdate, Email) 
+VALUES ("Santiago", "Cano", "1035654907", "3110982344", '1992-01-17', "santicano@hotmail.com");
+
+INSERT INTO bd_virtualwaiter.Customers(Names, Surnames, IdentificationDocument, Phone, Birthdate, Email) 
+VALUES ("Maria", "Ruiz", "1014567298", "3502764039", '1996-06-18', "mariar@hotmail.com");
+
+INSERT INTO bd_virtualwaiter.Customers(Names, Surnames, IdentificationDocument, Phone, Birthdate, Email) 
+VALUES ("Luis", "Zapata", "10206781123", "3136781230", '1997-03-15', "luiszapa@hotmail.com");
+
+INSERT INTO bd_virtualwaiter.eateryTable(Number, Capacity, Status) 
+VALUES (5, 4, b'1');
+
+INSERT INTO bd_virtualwaiter.eateryTable(Number, Capacity, Status) 
+VALUES (4, 4, b'1');
+
+INSERT INTO bd_virtualwaiter.eateryTable(Number, Capacity, Status) 
+VALUES (3, 4, b'1');
+
+INSERT INTO bd_virtualwaiter.eateryTable(Number, Capacity, Status) 
+VALUES (2, 4, b'1');
+
+INSERT INTO bd_virtualwaiter.eateryTable(Number, Capacity, Status) 
+VALUES (1, 4, b'1');
+
+INSERT INTO bd_virtualwaiter.orders(CreationDate, Observations, Price, Status, IdClient, IdTable) 
+VALUES ('2023-12-11 08:30:00', null, 15000, b'1', 13, 7);
+
+INSERT INTO bd_virtualwaiter.orders(CreationDate, Observations, Price, Status, IdClient, IdTable) 
+VALUES ('2023-11-15 09:38:04', "Sin cebolla", 27000, b'1', 9, 8);
+
+INSERT INTO bd_virtualwaiter.orders(CreationDate, Observations, Price, Status, IdClient, IdTable) 
+VALUES ('2023-10-11 07:55:55', null, 38500, b'1', 10, 9);
+
+INSERT INTO bd_virtualwaiter.orders(CreationDate, Observations, Price, Status, IdClient, IdTable) 
+VALUES ('2023-12-11 06:30:00', "Sin salsa", 40000, b'1', 11, 10);
+
+INSERT INTO bd_virtualwaiter.orders(CreationDate, Observations, Price, Status, IdClient, IdTable) 
+VALUES ('2023-09-19 10:38:09', null, 25000, b'1', 12, 11);
+
+INSERT INTO bd_virtualwaiter.products(Name, Description, Price) 
+VALUES ('Hamburguesa especial', "Pan, vegetales, carne, queso, tocineta", 27000);
+
+INSERT INTO bd_virtualwaiter.products(Name, Description, Price) 
+VALUES ('Papas especiales', "Papas, tocineta, carne, queso, salsa de la casa", 25000);
+
+INSERT INTO bd_virtualwaiter.products(Name, Description, Price) 
+VALUES ('Jugos naturales', "En agua o en leche", 4000);
+
+INSERT INTO bd_virtualwaiter.products(Name, Description, Price) 
+VALUES ('Postre', "Tres leches", 5500);
+
